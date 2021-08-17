@@ -168,11 +168,11 @@ Numeric values can be represented as either a Number or String type. As such, ex
 | binaryFraction       | (Number).properFractionToBinaryFraction(fractionalBits)  | Converts a proper fraction to binaryFraction. |
 | binarySequence       | (Number).properFractionToBinarySequence(fractionalBits)  | Converts a proper fraction to binarySequence. |
 |||
-| binaryFraction       | (Number).fractionalPartToBinaryFraction(fractionalBits)  | Converts the fractional part of a Number to a binaryFraction |
-| binarySequence       | (Number).fractionalPartToBinarySequence(fractionalBits)  | Converts the fractional part of a Number to a binarySequence |
+| binaryFraction       | (Number).fractionalPartToBinaryFraction(fractionalBits)  | Converts the fractional part of a Number to a binaryFraction. |
+| binarySequence       | (Number).fractionalPartToBinarySequence(fractionalBits)  | Converts the fractional part of a Number to a binarySequence. |
 |||                                         
-| Number  		         | "binaryValue".numberFromBinaryValue()			       	      | Presents a binaryValue as a Number (within a string form)  |
-| String	    	       | "binaryValue".exponentialFromBinaryValue()				        | Presents a binaryValue as an exponential Number            |
+| Number  		         | "binaryValue".numberFromBinaryValue()			       	      | Presents a binaryValue as a Number (within a string form).  |
+| String	    	       | "binaryValue".exponentialFromBinaryValue()				        | Presents a binaryValue as an exponential Number.            |
 |||
 | 0 <= integer         | "binarySequence".integerFromBinarySequence()			        | Converts a binaryInteger to an integer. |
 | 0 <= real < 1        | "binarySequence".properFractionFromBinarySequence()      | Converts the fractional part to a proper fraction. |
@@ -193,21 +193,21 @@ Numeric values can be represented as either a Number or String type. As such, ex
 ### Example of binaryValues represented as a string and as binaryComponents
 ```
 Integers:
-               "01_001" == { sign: '' ,  whole:  '01001', fractional:         '',  exponentSign: '',  exponent:     '' }
-               "-10101" == { sign: '-' , whole:  '10101', fractional:         '',  exponentSign: '',  exponent:     '' }
-               "+00101" == { sign: '+' , whole:  '00101', fractional:         '',  exponentSign: '',  exponent:     '' }
+            "01_001" == { sign:  '', whole:  '01001', fractional:        '',  exponentSign: '',  exponent:    '' }
+            "-10101" == { sign: '-', whole:  '10101', fractional:        '',  exponentSign: '',  exponent:    '' }
+            "+00101" == { sign: '+', whole:  '00101', fractional:        '',  exponentSign: '',  exponent:    '' }
 Reals:               
-          "   010010.0" == { sign: '' ,  whole: '010010', fractional:        '0',  exponentSign: '',  exponent:     '' }
-         "-010_010.101" == { sign: '-' , whole: '010010', fractional:      '101',  exponentSign: '',  exponent:     '' }
-           "+010010.01" == { sign: '+' , whole: '010010', fractional:       '01',  exponentSign: '',  exponent:     '' }
-             "-0.00010" == { sign: '-' , whole:      '0', fractional:    '00010',  exponentSign: '',  exponent:     '' }
+       "   010010.0" == { sign: '' , whole: '010010', fractional:       '0',  exponentSign: '',  exponent:    '' }
+      "-010_010.101" == { sign: '-', whole: '010010', fractional:     '101',  exponentSign: '',  exponent:    '' }
+        "+010010.01" == { sign: '+', whole: '010010', fractional:      '01',  exponentSign: '',  exponent:    '' }
+          "-0.00010" == { sign: '-', whole:      '0', fractional:   '00010',  exponentSign: '',  exponent:    '' }
 Proper Fractions: 
-            ".010_0100" == { sign: '' ,  whole:       '', fractional:  '0100100',  exponentSign: '',  exponent:     '' }
-               ".01011" == { sign: '' ,  whole:       '', fractional:    '01011',  exponentSign: '',  exponent:     '' }
+         ".010_0100" == { sign:  '', whole:       '', fractional: '0100100',  exponentSign: '',  exponent:    '' }
+            ".01011" == { sign:  '', whole:       '', fractional:   '01011',  exponentSign: '',  exponent:    '' }
 Exponentials:        
-     "  010.010 *^ +01" == { sign: '' ,  whole:    '010', fractional:      '010',   exponentSign: '+', exponent:  '01' }
-    "-1_010.10 *^ -101" == { sign: '-' , whole:   '1010', fractional:       '10',   exponentSign: '-', exponent: '101' }
-       "+ 001.010 *^ 0" == { sign: '+' , whole:    '001', fractional:      '010',   exponentSign:  '', exponent:   '0' }
+  "  010.010 *^ +01" == { sign:  '', whole:    '010', fractional:     '010',  exponentSign: '+', exponent:  '01' }
+ "-1_010.10 *^ -101" == { sign: '-', whole:   '1010', fractional:      '10',  exponentSign: '-', exponent: '101' }
+    "+ 001.010 *^ 0" == { sign: '+', whole:    '001', fractional:     '010',  exponentSign:  '', exponent:   '0' }
 ```
 
 Notes:
