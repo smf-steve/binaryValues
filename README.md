@@ -124,7 +124,7 @@ Using the computed value of the normalized binary value, as defined by BC, we ca
   * decimalComponents: an object conatinain the various components of a decimalValue, mirroring the structure of binaryComponents
 
 ## API: Application Programmer's Interface
-The binaryValues library defines an object "binaryObject" that encapulates all of the operations performed on binaryValues.  These binaryValues can be be represented either via a string or as binayComponents.  As such the library provides a number of prototype definitions to extend "Strings."  The library also defines a number of protype defintions to extend "Numbers".
+The binaryValues library defines an object "binaryObject" that encapulates all of the operations performed on binaryValues.  These binaryValues can be be represented either via a string or as binayComponents.  As such the library provides a number of prototype definitions to extend "Strings."  The library also defines a number of protype defintions to extend "Numbers".  An operation that results in a invalid binaryValue returns _NaN_.
 
 ### Extentions to the _String_ API
 
@@ -143,28 +143,52 @@ The binaryValues library defines an object "binaryObject" that encapulates all o
 |binaryValue   | "binaryValue".demoteBinaryValue()                    | Converts representation of a binaryValue to the simplies valid form: binaryExponential -> binaryReal -> binaryInteger. |
 |              |                                                      | |                                                                               
 |binaryValue   | "binaryValue".trimBinaryValue()                      | Removes superfluous leading and trailing zeros (0) from all components of a BinaryValue. |
-|binaryValue   | "binaryValue".padBinaryValue(Number, Number, Number) | Adds superfluous zeros (0) to appropriate pad the whole, fractional, and exponent part of a binaryValue
-
+|binaryValue   | "binaryValue".padBinaryValue(Number, Number, Number) | Adds superfluous zeros (0) to appropriate pad the whole, fractional, and exponent part of a binaryValue |
+||
 |binaryValue   | "binaryValue".trimStartBinarySequence()              | Removes the leading zeros (0) of a binarySequence. |
 |binaryValue   | "binaryValue".trimEndBinarySequence()                | Removes the trailing zeros (0) of a binarySequence. |
-
+||
 |binaryValue   | "binaryValue".padStartBinarySequence(Number)         | Adds superflouous zeros (0) to the begining of a binarySequence. |
 |binaryValue   | "binaryValue".padEndBinarySequence(Number)           | Adds superflouous zeros (0) to the end of a binarySequence. |
 |              |                                                      |                                                                                
 |binaryValue   | "binaryValue".toFixedBinaryValue(fractionalBits=23)  | Sets the number of fractional digits. |
 |binaryValue   | "binaryValue".toPrecisionBinaryValue(totalBits=24)   | Sets the total number of primary (nonsuperfluous) binary digits. |
+||
+|binaryComponents | "binaryValue".toBinaryComponents()                | Provides the binaryComponent ===representation of the binaryValue. |
+
 
 ### Extensions to the _Math_ API
-Numeric values can be represented as either a Number or String type. Extentions to both the _Math_ and _String_ API have been provided. Note the following:
+Numeric values can be represented as either a Number or String type. As such, extentions to both the _Math_ and _String_ API are provided.
+
+| Results | Method Call | Description |
+|---------|-------------|-------------|
+| binaryValue          | (Number).toBinaryValue(fractionalBits)                   | Converts a number to a binaryValue.   | 
+| binarySequence       | (Number).integerToBinarySequence()                       | Converts an integer to a binaryValue. | 
+|||
+| binaryFraction       | (Number).properFractionToBinaryFraction(fractionalBits)  | Converts a proper fraction to binaryFraction. |
+| binarySequence       | (Number).properFractionToBinarySequence(fractionalBits)  | Converts a proper fraction to binarySequence. |
+|||
+| binaryFraction       | (Number).fractionalPartToBinaryFraction(fractionalBits)  | Converts the fractional part of a Number to a binaryFraction |
+| binarySequence       | (Number).fractionalPartToBinarySequence(fractionalBits)  | Converts the fractional part of a Number to a binarySequence |
+|||                                         
+| Number  		         | "binaryValue".numberFromBinaryValue()			       	      | Presents a binaryValue as a Number (within a string form)  |
+| String	    	       | "binaryValue".exponentialFromBinaryValue()				        | Presents a binaryValue as an exponential Number            |
+|||
+| 0 <= integer         | "binarySequence".integerFromBinarySequence()			        | Converts a binaryInteger to an integer. |
+| 0 <= real < 1        | "binarySequence".properFractionFromBinarySequence()      | Converts the fractional part to a proper fraction. |
+| 0 <= real < 1        | "binarySequence".fractionalPartFromBinarySequence()      | Converts the fractional part to a fractional part. |
+| decimalComponents    | (Number).toDecimalComponents()                           | Provides the binaryComponent representation of the Number. |
+|||
+| binarySequence       | (Number).numberToBinaryFraction(limit, fractionalBits)   | Calculate the binary representation of the fraction component of a number |
+
 
   * Results are numbers within their string representational form.
   * Results are always presented in their simpliest form.
   * Whereas the _(Number).toString()_ method can be used to a number to a binaryValue, we still provide specific methods to perform various operations.  The include source code can be used to demostrative purposes, etc.
 
-
-
-
 ### BinaryObject API
+
+
 
 ### Example of binaryValues represented as a string and as binaryComponents
 ```
