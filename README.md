@@ -1,5 +1,4 @@
-# Name
-binaryValues.js
+# Name: binaryValues.js
 
 # Synopsis
 A Javascript library that provides support for binary values.  These values are represented as either
@@ -8,15 +7,22 @@ A Javascript library that provides support for binary values.  These values are 
 
 Example binary values (represented as string) with their corresponding decimal value:
 | binary Value   | Decimal Value |Description  |
-| -------------:|--------------:|:-------------|
-| "1001"      | 9 | Postive Integer |
-| "-1101"     | -13 | Negative Integer |
-| "-1101.11"   | -13.75 | Negative Real Number |
-| "0.101" | 0.65 | Real Number (in proper form) |
-| ".101" | 0.625 | Proper Fraction |
+| --------------:|--------------:|:-------------|
+| "1001"         | 9 | Postive Integer |
+| "-1101"        | -13 | Negative Integer |
+| "-1101.11"     | -13.75 | Negative Real Number |
+| "0.101"        | 0.65 | Real Number (in proper form) |
+| ".101"         | 0.625 | Proper Fraction |
 | "10010.1 \*^ -10" | 9.25 | Exponential Form |
 | "1.00101 \*^ 11" | 9.25 | Normalized Exponential Form |
 
+
+### Table of Contents
+[Description](#description)
+[Terminology](#standard-terminology)
+[Strings API](#strings-api)
+[Math API](#math-api)
+[BinaryObject API](#binaryojbect-api)
 
 # Description
 Javascript supports binary literals. The support for binary values are limited to these 
@@ -84,10 +90,10 @@ Using the computed value of the normalized binary value, as defined by BC, we ca
    e = binary_add( BC.exponent, "0111111");    // Note that the function binary_add is not (currently) provided.
    f = BC.fractional;
 ```
+---
+## Implementation Details
 
-## Details
-
-### Standard Terminology
+### <a name=terminology></a>Standard Terminology
   * asciiString:       an array of bytes, with each byte encoding an ascii value
   * binaryString:      a sequence of bytes, which may encode all different types of binary data 
   * binarySequence:    a sequence of ones and zeros 
@@ -98,7 +104,7 @@ Using the computed value of the normalized binary value, as defined by BC, we ca
   * binarySequence:    a non-empty ascii string composed of solely binary digits. Addition punctuation
                        characters ([_, \t]) may be provided for visual clarity.
 
-  *  binaryValue:      a string that is either a binaryInteger, binaryReal, or binaryExponential
+  * binaryValue:      a string that is either a binaryInteger, binaryReal, or binaryExponential
 
   * binaryInteger:     a value with the syntax of: [+-]? binarySequence 
   * binaryReal:        a value with the syntax of: binaryInteger '.' binarySequence
@@ -106,15 +112,87 @@ Using the computed value of the normalized binary value, as defined by BC, we ca
   * binaryExponential: a value with the syntax of: binaryReal '\*^' [+-]? binaryInteger  
 
   * binaryComponents:  an object containing the various components of a binaryValue
-  ```
-       {
-           sign          : [+-]?            // empty string denotes non-negative
-           whole         : binarySequence?  // empty string denotes fractional value 
-           fractional    : binarySequence?  // empty string denotes no value
-           exponentSign  : [+-]?            // empty string denotes non-negative
-           exponent      : binarySequence?  // empty string denotes no value
-       }
-  ```
+     ```
+     {
+         sign          : [+-]?            // empty string denotes non-negative
+         whole         : binarySequence?  // empty string denotes fractional value 
+         fractional    : binarySequence?  // empty string denotes no value
+         exponentSign  : [+-]?            // empty string denotes non-negative
+         exponent      : binarySequence?  // empty string denotes no value
+     }
+     ```
   * decimalComponents: an object conatinain the various components of a decimalValue, mirroring the structure of binaryComponents
 
-## API
+## API: Application Programmer's Interface
+The binaryValues library defines an object "binaryObject" that encapulates all of the operations performed on binaryValues.  These binaryValues can be be represented either via a string or as binayComponents.  As such the library provides a number of prototype definitions to extend "Strings."  The library also defines a number of protype defintions to extend "Numbers".
+
+### Extentions to the _String_ API
+
+| Return Value | Method Call | Description|
+|--------------|-------------|------------|
+|Boolean       | "binaryValue".isBinaryValue()                        | Determines if the String is a valid BinaryValue.   |
+|Boolean       | "binaryValue".isBinarySequence()                     | Determines if the String is a valid BinarySequence. |
+|Boolean       | "binaryValue".isZeroBinaryValue() 		              | Determines if the String represents BinaryValue with the value of zero (0). |
+|Boolean       | "binaryValue".isNormalizedBinaryValue()              | Determines if the String is a normalized binaryValue (e.g, 1.bbbb ^* bbb)
+|              |                                                      | |                                                                               
+|binaryValue   | "binaryValue".normalizeBinaryValue()                 | Converts the String to a normalized binaryValue.
+|binaryValue   | "binaryValue".toExponentialBinaryValue()             | Converts the String to a exponential form, which may not be trimmed appropriately. |
+|binaryValue   | "binaryValue".adjustExponentBinaryValue(Number)      | Changes the value of the exponent by a delta. |
+|              |                                                      | |                                                                              
+|binaryValue   | "binaryValue".flattenBinaryValue()                   | Converts a binaryValue in exponetial form to a binaryReal |
+|binaryValue   | "binaryValue".demoteBinaryValue()                    | Converts representation of a binaryValue to the simplies valid form: binaryExponential -> binaryReal -> binaryInteger. |
+|              |                                                      | |                                                                               
+|binaryValue   | "binaryValue".trimBinaryValue()                      | Removes superfluous leading and trailing zeros (0) from all components of a BinaryValue. |
+|binaryValue   | "binaryValue".padBinaryValue(Number, Number, Number) | Adds superfluous zeros (0) to appropriate pad the whole, fractional, and exponent part of a binaryValue
+
+|binaryValue   | "binaryValue".trimStartBinarySequence()              | Removes the leading zeros (0) of a binarySequence. |
+|binaryValue   | "binaryValue".trimEndBinarySequence()                | Removes the trailing zeros (0) of a binarySequence. |
+
+|binaryValue   | "binaryValue".padStartBinarySequence(Number)         | Adds superflouous zeros (0) to the begining of a binarySequence. |
+|binaryValue   | "binaryValue".padEndBinarySequence(Number)           | Adds superflouous zeros (0) to the end of a binarySequence. |
+|              |                                                      |                                                                                
+|binaryValue   | "binaryValue".toFixedBinaryValue(fractionalBits=23)  | Sets the number of fractional digits. |
+|binaryValue   | "binaryValue".toPrecisionBinaryValue(totalBits=24)   | Sets the total number of primary (nonsuperfluous) binary digits. |
+
+### Extensions to the _Math_ API
+Numeric values can be represented as either a Number or String type. Extentions to both the _Math_ and _String_ API have been provided. Note the following:
+
+  * Results are numbers within their string representational form.
+  * Results are always presented in their simpliest form.
+  * Whereas the _(Number).toString()_ method can be used to a number to a binaryValue, we still provide specific methods to perform various operations.  The include source code can be used to demostrative purposes, etc.
+
+
+
+
+### BinaryObject API
+
+### Example of binaryValues represented as a string and as binaryComponents
+```
+Integers:
+               "01_001" == { sign: '' ,  whole:  '01001', fractional:         '',  exponentSign: '',  exponent:     '' }
+               "-10101" == { sign: '-' , whole:  '10101', fractional:         '',  exponentSign: '',  exponent:     '' }
+               "+00101" == { sign: '+' , whole:  '00101', fractional:         '',  exponentSign: '',  exponent:     '' }
+Reals:               
+          "   010010.0" == { sign: '' ,  whole: '010010', fractional:        '0',  exponentSign: '',  exponent:     '' }
+         "-010_010.101" == { sign: '-' , whole: '010010', fractional:      '101',  exponentSign: '',  exponent:     '' }
+           "+010010.01" == { sign: '+' , whole: '010010', fractional:       '01',  exponentSign: '',  exponent:     '' }
+             "-0.00010" == { sign: '-' , whole:      '0', fractional:    '00010',  exponentSign: '',  exponent:     '' }
+Proper Fractions: 
+            ".010_0100" == { sign: '' ,  whole:       '', fractional:  '0100100',  exponentSign: '',  exponent:     '' }
+               ".01011" == { sign: '' ,  whole:       '', fractional:    '01011',  exponentSign: '',  exponent:     '' }
+Exponentials:        
+     "  010.010 *^ +01" == { sign: '' ,  whole:    '010', fractional:      '010',   exponentSign: '+', exponent:  '01' }
+    "-1_010.10 *^ -101" == { sign: '-' , whole:   '1010', fractional:       '10',   exponentSign: '-', exponent: '101' }
+       "+ 001.010 *^ 0" == { sign: '+' , whole:    '001', fractional:      '010',   exponentSign:  '', exponent:   '0' }
+```
+
+Notes:
+  * Literal BinaryValues may contain underscores (_), a spaces (" "), or a tabs ("\t") for visual clarity
+  * BinaryValues are always stored without punctuation characters
+  * BinaryValues are not necessarily store in a normalized or pure form, 
+    - e.g, the binaryReal "0010001.0000" is valid, and in its pure form is: "10001.0"
+  * The binaryValue representing zero is never associated with a sign
+  * Proper Fractions never have an associated exponential value
+  * Methods exist to either normalize binaryValues or to demote them to a simpler form.	
+  * The default maximum number of fractional bits is set to 23, which corresponds to the required number in  IEEE binary32 format.
+
