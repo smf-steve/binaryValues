@@ -169,7 +169,7 @@ class binaryObject {
         var sign = this.isSign(ch);
         console.assert( assert != false, "Invalid value for sign");
 
-        this.sign = sign;
+        this.sign = ch;
         return this;
     }
 
@@ -216,9 +216,10 @@ class binaryObject {
         if ( (this.fractional).length > 0 ) {
             if ( (this.whole).length == '' ) {
               return "fraction";
-          } else {
-            return "real";
-        } 
+            } else {
+              return "real";
+            } 
+        }
         return "integer";
     }
 
@@ -247,7 +248,7 @@ class binaryObject {
                 // merge;
 
             case "real":
-            case "fraction"
+            case "fraction":
                 result &= ( binaryObject.integerToBinarySequence(this.fractional) == 0 )
                 // merge;
 
