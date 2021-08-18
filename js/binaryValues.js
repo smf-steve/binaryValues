@@ -20,7 +20,7 @@ class binaryObject {
     _initialize_members() {
         this.sign         = "";
         this.whole        = "0";
-        this.fractional     = "";
+        this.fractional   = "";
         this.exponentSign = "";
         this.exponent     = "";
     }
@@ -214,6 +214,9 @@ class binaryObject {
             return "exponential";
         }
         if ( (this.fractional).length > 0 ) {
+            if ( (this.whole).length == '' ) {
+              return "fraction";
+          } else {
             return "real";
         } 
         return "integer";
@@ -244,6 +247,7 @@ class binaryObject {
                 // merge;
 
             case "real":
+            case "fraction"
                 result &= ( binaryObject.integerToBinarySequence(this.fractional) == 0 )
                 // merge;
 
