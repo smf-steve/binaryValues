@@ -132,7 +132,7 @@ The binaryValues library defines an object "binaryObject" that encapulates all o
 |--------------|-------------|------------|
 |Boolean       | "binaryValue".isBinaryValue()                        | Determines if the String is a valid BinaryValue.   |
 |Boolean       | "binaryValue".isBinarySequence()                     | Determines if the String is a valid BinarySequence. |
-|Boolean       | "binaryValue".isZeroBinaryValue() 		              | Determines if the String represents BinaryValue with the value of zero (0). |
+|Boolean       | "binaryValue".isZeroBinaryValue() 		                | Determines if the String represents BinaryValue with the value of zero (0). |
 |Boolean       | "binaryValue".isNormalizedBinaryValue()              | Determines if the String is a normalized binaryValue (e.g, 1.bbbb ^* bbb)
 |              |                                                      | |                                                                               
 |binaryValue   | "binaryValue".normalizeBinaryValue()                 | Converts the String to a normalized binaryValue.
@@ -158,7 +158,18 @@ The binaryValues library defines an object "binaryObject" that encapulates all o
 
 
 ### Extensions to the _Math_ API
-Numeric values can be represented as either a Number or String type. As such, extentions to both the _Math_ and _String_ API are provided.
+Numeric values can be represented as either a Number or String type. As such, extentions to both the _Math_ and _String_ API are provided. For example, the .toBinaryValue method is associated with both the _Math_ and _String_ API. As such, each of the following javascript statements are valid.
+
+```
+var x = (42).toBinaryValue();
+var y = "42".toBinaryValue();
+
+var n = 42;
+var s = 42;
+
+var N = n.toBinaryValue();
+var S = s.toBinaryValue();
+```
 
 | Results | Method Call | Description |
 |---------|-------------|-------------|
@@ -187,7 +198,55 @@ Numeric values can be represented as either a Number or String type. As such, ex
   * Whereas the _(Number).toString()_ method can be used to a number to a binaryValue, we still provide specific methods to perform various operations.  The include source code can be used to demostrative purposes, etc.
 
 ### BinaryObject API
+BinaryValues can be stored and manipulated in via a object.  The name of the object class is BinaryObject. A program can choose to use this object directly.  The public methods are as follows:
 
+| Return Value | Method Call | Description / Example |
+|--------------|-------------|-----------------------|
+|Constructors:}}
+|    binaryObject       | new binaryObject()                               | Creates a new binaryObject with a value of zero.   |
+|    binaryObject       | new binaryObject(Number)                         | X = new binaryObject ( 5.3 );    |
+|    binaryObject       | new binaryObject(binaryValue)                    | X = new binaryObject ("- 101_101.111 *^ - 0111")   |
+|    binaryObject       | new binaryObject(binaryComponents)               | X = new binaryObject ( { _fields_ } )    |
+|||
+|Get Methods:||
+|    binaryValue        | binaryObject.get()                               | Returns the string representation of the binaryValue |
+|    binaryComponents   | binaryObject.getComponents()                     |      |
+|    char               | binaryObject.getSign()                           |      |
+|    binarySequence     | binaryObject.getWhole()                          |      |
+|    binarySequence     | binaryObject.getFractional()                     |      |
+|    char               | binaryObject.getExponentSign()                   |      |
+|    binarySequence     | binaryObject.getExponent()                       |      |
+|||
+|Set Methods:||
+|    binaryObject       | binaryObject.set( binaryValue )                  |      |
+|    binaryObject       | binaryObject.setComponents( binaryComponents )   |      |
+|    binaryObject       | binaryObject.setSign( [ +-] )                    |      |
+|    binaryObject       | binaryObject.setWhole( binarySequence )          |      |
+|    binaryObject       | binaryObject.setFractional( binarySequence )     |      |
+|    binaryObject       | binaryObject.setExponentSign( [ +-] )            |      |
+|    binaryObject       | binaryObject.setExponent( binarySequence )       |      |
+|
+|General Methods: ||
+|	 String             | binaryObject.format() 				    | Returns the type/format of binaryValue: {"integer", "real", "exponential", "NaN"}  |
+|    Boolean            | binaryObject.isValid()                    | Returns true if the binaryValue is valid, i.e., not NaN. |
+|||
+|    Boolean            | binaryObject.isZero() 					| Returns true if the binaryValue is equivalent to zero. |
+|    Boolean		    | binaryObject.isNormalized() 				| Returns true if the value is in normalized format. |
+|||
+|    binaryObject       | binaryObject.normalize()                  | Converts to normalized exponential form. |
+|    binaryObject       | binaryObject.exponential()                | Converts to normalized exponential form without trimming superfluous zeros. |
+|    binaryObject       | binaryObject.adjustExponent(Number)  		| Adjusts exponential represention by a desired exponent. |
+|||
+|    binaryObject       | binaryObject.flatten()                    | Converts from exponential form to a binaryReal. |
+|    binaryObject       | binaryObject.demote()                     | Converts the representation to the simpliest format. |
+|||
+|    binaryObject       | binaryObject.trim()                       | Removes superfluous leading and trailing 0s from all components fof a binaryValue. |
+|||
+|    binaryObject       | binaryObject.toFixed(fractionalBits=23)   | Sets the number of fractional digits.  |
+|    binaryObject       | binaryObject.toPrecision(totalBits=24)    | Sets the total number of primary (nonsuperfluous) binary digits. |
+
+
+Note that there are also a number of static methods, e.g, binaryObject.toBinaryValue(String, fractionalBits).  Each of these methods, however, have associated _String_ and _Math_ prototypes defined.  Since we anticipate that these prototypes will be used in favor of these static methods, refer to the internal documentation for additional information.
 
 
 ### Example of binaryValues represented as a string and as binaryComponents
