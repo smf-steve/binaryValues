@@ -102,13 +102,14 @@ Using the computed value of the normalized binary value, as defined by BC, we ca
 
 ### Terminology within this documentation
   * binarySequence:    a non-empty ascii string composed of solely binary digits. Addition punctuation
-                       characters ([_, \t]) may be provided for visual clarity.
+                       characters ([\_, \t]) may be provided for visual clarity.
 
   * binaryValue:      a string that is either a binaryInteger, binaryReal, or binaryExponential
 
   * binaryInteger:     a value with the syntax of: [+-]? binarySequence 
   * binaryReal:        a value with the syntax of: binaryInteger '.' binarySequence
-  * binaryFraction:    a value with the syntax of: '.' binarySequence     						// note there is no leading zero
+  * binaryFraction:    a value with the syntax of: '.' binarySequence     						
+    - Note there is no leading zero associated with a binaryFraction.
   * binaryExponential: a value with the syntax of: binaryReal '\*^' [+-]? binaryInteger  
 
   * binaryComponents:  an object containing the various components of a binaryValue
@@ -227,15 +228,15 @@ BinaryValues can be stored and manipulated in via a object.  The name of the obj
 |    binaryObject       | binaryObject.setExponent( binarySequence )       |      |
 |||
 |General Methods: ||
-|	 String             | binaryObject.format() 				    | Returns the type/format of binaryValue: {"integer", "real", "exponential", "NaN"}  |
+|	 String               | binaryObject.format() 				            | Returns the type/format of binaryValue: {"integer", "real", "fraction", exponential", "NaN"}  |
 |    Boolean            | binaryObject.isValid()                    | Returns true if the binaryValue is valid, i.e., not NaN. |
 |||
-|    Boolean            | binaryObject.isZero() 					| Returns true if the binaryValue is equivalent to zero. |
-|    Boolean		    | binaryObject.isNormalized() 				| Returns true if the value is in normalized format. |
+|    Boolean            | binaryObject.isZero() 					          | Returns true if the binaryValue is equivalent to zero. |
+|    Boolean		        | binaryObject.isNormalized() 		         	| Returns true if the value is in normalized format. |
 |||
 |    binaryObject       | binaryObject.normalize()                  | Converts to normalized exponential form. |
 |    binaryObject       | binaryObject.exponential()                | Converts to normalized exponential form without trimming superfluous zeros. |
-|    binaryObject       | binaryObject.adjustExponent(Number)  		| Adjusts exponential represention by a desired exponent. |
+|    binaryObject       | binaryObject.adjustExponent(Number)  		  | Adjusts exponential represention by a desired exponent. |
 |||
 |    binaryObject       | binaryObject.flatten()                    | Converts from exponential form to a binaryReal. |
 |    binaryObject       | binaryObject.demote()                     | Converts the representation to the simpliest format. |
