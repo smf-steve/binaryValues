@@ -281,7 +281,15 @@ class binaryObject {
         //  ensure the binaryValue is in the form:  1.xxxx *^ xxx
         var updated = this.trim();
         updated = updated.toExponential();
+        if ( updated.sign == '+') {
+            // remove the explicit positive sign
+            updated.sign = '';
+        }
         updated.whole = binaryObject.trimStartBinarySequence(updated.whole);
+        if ( updated.exponentSign == '+') {
+            // remove the explicit positive sign
+            updated.exponentSign = '';
+        }
         return updated;
     }
 
@@ -299,8 +307,9 @@ class binaryObject {
         var adjust;   // the amount we need to move the radix point
         adjust = this.whole.length - this.whole.search(/1/) - 1;
         
-        if (binaryObject.isZeroBinaryValue(this.whole)) {
-           // we have a special case where the binaryValue is:  0..0.xxxx *^ xxx
+        if (binaryObject.isZeroBinaryValue(this.whole) || this.whole == '') {
+           // We have a special case where the whole does not contain a 1, 
+           // I.e., the number is explicitly or implicitly: 0.bbbb *^ bbb
             adjust = - (this.fractional.search(/1/) + 1);
         }
 
@@ -330,7 +339,7 @@ class binaryObject {
             updated.exponent = "0".padStart(updated.exponent.length, 0);
         }
         if ( new_exponent > 0 ) {     
-            updated.exponentSign = '';   // Leave as an implicit positive
+            updated.exponentSign = (updated.exponentSign == '+') ? '+' : '' ;  // If there was an explicity positive sign, leave it!
             updated.exponent = binaryObject.integerToBinarySequence(new_exponent).padStart(updated.exponent.length, 0);
         }
 
@@ -400,17 +409,19 @@ class binaryObject {
 
     ///  000bbb000   -> bbb000
     static trimStartBinarySequence (str) {
+        if (str == '') return str;   // Handling the case of an empty binarySequence
         console.assert(binaryObject.isBinarySequence(str), "string", "Expected binary sequence");
-        var index = str.indexOf('1');
 
+        var index = str.indexOf('1');
         return str.substring(index);
     }
 
     ///  000bbb000   -> 000bbb
     static trimEndBinarySequence ( str ) {
+        if (str == '') return str;   // Handling the case of an empty binarySequence
         console.assert(binaryObject.isBinarySequence(str), "string", "Expected binary sequence");
-        var index = str.lastIndexOf('1');
 
+        var index = str.lastIndexOf('1');
         return str.substring(0, index+1);
     }
 

@@ -155,7 +155,7 @@ The binaryValues library defines an object "binaryObject" that encapulates all o
 |binaryValue   | "binaryValue".toFixedBinaryValue(fractionalBits=23)  | Sets the number of fractional digits. |
 |binaryValue   | "binaryValue".toPrecisionBinaryValue(totalBits=24)   | Sets the total number of primary (nonsuperfluous) binary digits. |
 ||
-|binaryComponents | "binaryValue".toBinaryComponents()                | Provides the binaryComponent ===representation of the binaryValue. |
+|binaryComponents | "binaryValue".toBinaryComponents()                | Provides the binaryComponent representation of the binaryValue. |
 
 
 ### Extensions to the _Math_ API

@@ -2,6 +2,7 @@
 
 1. If a user provides an explicit '+' sign in a binaryValue, should the superfluous '+' always be retained.
 	- It could be the case that the '+' sign is only changed to '' (empty) upon a call to normalize.
+  - FIXED!
 
 1. Proper fractions (binaryFractions) are currently structured as ".bbbb". Note there is no leading zero.
   * This is intentially, so that you can use string concatenation to join the whole part and a fractional number together.
@@ -10,7 +11,7 @@
      console.log(x);   // the binary value of "101.01" is presented.
   ```
   * One can argue that the number is not written precisoulsy.  
-  * In this package, owever, we also allow numbers like:   00001.11011000
+  * In this package, however, we also allow numbers like:   00001.11011000
 
 1. Review the naming convention of _Math_ protypes.
   *  Consider the following:
