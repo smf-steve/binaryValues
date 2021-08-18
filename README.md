@@ -21,7 +21,7 @@ Example binary values (represented as string) with their corresponding decimal v
 [Description](#description)
 [Terminology](#standard-terminology)
 [Strings API](#strings-api)
-[Math API](#math-api)
+[Math API](#extensions-to-the-math-api)
 [BinaryObject API](#binaryobject-api)
 
 # Description
@@ -225,7 +225,7 @@ BinaryValues can be stored and manipulated in via a object.  The name of the obj
 |    binaryObject       | binaryObject.setFractional( binarySequence )     |      |
 |    binaryObject       | binaryObject.setExponentSign( [ +-] )            |      |
 |    binaryObject       | binaryObject.setExponent( binarySequence )       |      |
-|
+|||
 |General Methods: ||
 |	 String             | binaryObject.format() 				    | Returns the type/format of binaryValue: {"integer", "real", "exponential", "NaN"}  |
 |    Boolean            | binaryObject.isValid()                    | Returns true if the binaryValue is valid, i.e., not NaN. |
