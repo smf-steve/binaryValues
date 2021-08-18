@@ -1,0 +1,42 @@
+///  README File for staticMethods:
+///
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///  binaryObject Static Methods    
+///     String prototypes have bee provided for each of these methods.
+///
+///         binaryComponents        <- binaryObject.toBinaryComponents(String)                  // returns NaN   if NOT a BinaryValue
+///         decimalComponents       <- binaryObject.toDecimalComponents(Number)                 // returns NaN   if NOT a BinaryValue
+///
+///			Boolean                 <- binaryObject.isBinaryValue(String)						// returns false if not a BinaryValue
+///			binaryValue             <- binaryObject.toBinaryValue(String, fractionalBits)		//  "100.01"  <- binaryObject.toBinaryValue(4.25)
+///
+///		    Boolean                 <- binaryObject.isBinarySequence(String) 			        // Returns false if not a BinarySequence
+///        
+///			Boolean  	        	<- binaryObject.isZeroBinaryValue(String) 			        // Returns false if the value of the "String" is not zero
+///			Boolean      			<- binaryObject.isNormalizedBinaryValue(String) 	        // Returns false if not a normalized binaryValue
+///        
+///
+///         binarySequence          <- binaryObject.trimStartBinarySequence(String)                 
+///         binarySequence          <- binaryObject.trimEndBinarySequence(String)     
+///
+///         binaryValue             <- binaryObject.toBinaryValue(Number, fractionalBits) 	   
+///
+///         binaryFraction          <- binaryObject.properFractionToBinaryFraction(Number, fractionalBits)      //     ".1"  <- binaryObject.properFractionToBinaryValue(0.5)
+///         binaryFraction          <- binaryObject.fractionalPartToBinaryFraction(Number, fractionalBits)      //      "1"  <- binaryObject.fractionalPartToBinaryValue(5)
+///  
+///			Number  				<- binaryObject.numberFromBinaryValue(String)                               //     "25"  <- binaryObject.numberFromBinaryValue("1.1001  *^ 100")
+///			String					<- binaryObject.exponentialFromBinaryValue(String)	                        //   "2.5E1" <- binaryObject.exponentialFromBinaryValue("1.1001  *^ 100")
+///  
+///			0 <= integer            <- binaryObject.integerToBinarySequence(Number)                             //   "11001" <- binaryObject.integerToBinarySequence(25)
+/// 
+///         binarySequence          <- binaryObject.numberToBinaryFraction(val, limit, fractionalBits)          //  "1100" <- binaryObject.numberToBinaryFraction(75, 100, 4)
+///         0 <= real < 1           <- binaryObject.properFractionToBinarySequence(Number, fractionalBits)      //  "1100" <- binaryObject.properFractionToBinarySequence(0.75, 4)
+///         0 <= real < 1           <- binaryObject.fractionalPartToBinarySequence(Number, fractionalBits)      //  "1100" <- binaryObject.fractionalPartToBinarySequence(75, 4)
+///  
+///			0 <= integer            <- binaryObject.integerFromBinarySequence(String)					        //    "26"  <- binaryObject.integerFromBinarySequence("11010")
+///         0 <= real < 1           <- binaryObject.properFractionFromBinarySequence(String)                    //   ".75"  <- binaryObject.properFractionFromBinarySequence("11")
+///         0 <= real < 1           <- binaryObject.fractionalPartFromBinarySequence(String)                    //   "75"  <- binaryObject.fractionalPartFromBinarySequence("11")
+///
+///
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
