@@ -22,7 +22,7 @@ Example binary values (represented as string) with their corresponding decimal v
 [Terminology](#standard-terminology)
 [Strings API](#strings-api)
 [Math API](#math-api)
-[BinaryObject API](#binaryojbect-api)
+[BinaryObject API](#binaryobject-api)
 
 # Description
 Javascript supports binary literals. The support for binary values are limited to these 
