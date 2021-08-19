@@ -30,3 +30,9 @@
   * Carefull analysis of the naming provides the right answer, but should it be more obvious with being more wordy?
 
 1. Validate the API changes related to the sizing of each part of a binaryValue, e.g., the sizing of the exponent/
+
+1. Consider creating a decimalValues library the mimimics this system.
+  * With minor name changes and removal of some hard coded stuff, it would be relatively to create said package.
+  * A simple example of something that is hard coded is: str.indexOf('1').  This could be changed to str.search(nonZeroDigit), where nonZeroDigit === /[^0]/
+  * If done, the name of the system could be changed to basedValues to allow any base to be handled.
+

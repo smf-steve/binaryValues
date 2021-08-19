@@ -30,21 +30,23 @@ class binaryObject {
     static #maxFractionalBits    = 23;
 
 
+    static nonZeroDigits_RE()    { return /[1]/ ;}
+
     // Associated Literal Strings 
-    static radix()               { return "." ; }
-    static e_notation()          { return " *^ " ; }
+    static radix()               { return "." ;}
+    static e_notation()          { return " *^ " ;}
 
     // Regular Expressions Used for Parsing
-    static sign_RE()             { return /[+-]?/ ; }
-    static radix_RE()            { return /\./ ; }
-    static e_notation_RE()       { return /[*][^]/ ; } 
+    static sign_RE()             { return /[+-]?/ ;}
+    static radix_RE()            { return /\./ ;}
+    static e_notation_RE()       { return /[*][^]/ ;}
     static punctuation_RE()      { return /[_, \t]/ ;} 
-    static binaryValue_syntax()  { return /^([+-])?([01]*)(\.([01]+))?([*][^]([+-]?)([01]+))?$/ ; }
-    static decimalValue_syntax() { return /^([+-])?([0-9]*)(\.([0-9]+))?(E([+-]?)([0-9]+))?$/ ; }
+    static binaryValue_syntax()  { return /^([+-])?([01]*)(\.([01]+))?([*][^]([+-]?)([01]+))?$/ ;}
+    static decimalValue_syntax() { return /^([+-])?([0-9]*)(\.([0-9]+))?(E([+-]?)([0-9]+))?$/ ;}
 
-    static sequence_RE()         { return /^[01]+$/; }
-    static zero_RE()             { return /^([0]+)(\.([0]+))?([*][^]([+-]?)([01]+))?$/ ; }
-    static normalized_RE()       { return /^([+-])?(1)\.([01]+)[*][^]([+-]?)[01]+$/ ; }
+    static sequence_RE()         { return /^[01]+$/ ;}
+    static zero_RE()             { return /^([0]+)(\.([0]+))?([*][^]([+-]?)([01]+))?$/ ;}
+    static normalized_RE()       { return /^([+-])?(1)\.([01]+)[*][^]([+-]?)[01]+$/ ;}
 
  
 
