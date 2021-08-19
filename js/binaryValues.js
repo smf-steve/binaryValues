@@ -847,5 +847,18 @@ class binaryObject {
     }
 
 
+    static testSuite ( testCase ) {
+        var outcome = eval ( testCase.func );
+        var stringify = JSON.stringify(outcome);
+
+        if (stringify == JSON.stringify (testCase.result)) {
+            console.log(   "Success!" + "\t\t" + testCase.func + "  ==  " + testCase.result );
+        } else {
+            console.error( "Failure!" + "\t\t" + testCase.func );
+            console.error( "\tExpected: " + testCase.result );
+            console.error( "\tOutCome:  " + outcome );
+            console.error();
+        }
+    }
 }
 

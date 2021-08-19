@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>Tesing Page for BinaryObjects</title>
+<link rel="icon" href="" type="image/x-icon" />
+</head>
+<script src="js/binaryValues.js"></script>
+<script src="js/binaryValues_prototypes.js"></script>
+<script src="js/binaryValues_testCases.js"></script>
+<script>
+window.onload = function () {
+   testCases.forEach( element => binaryObject.testSuite(element));
+};
+</script>
+
+<body>
+   <h1>Testing Page for BinaryValues</h1>
+
+   <ul>
+      <li> When you load this file, a number of test cases are executed on the binaryValues library.</li>
+      <li> Review console.log and console.error logs for the results of theses tests.</li>
+      <li> Note that there are two negative tests that should result in an assertion failing.</li>
+   </ul>
+
+   <h2>Test Case.</h2>
+   <ol>
+      <li> The test cases are located in the file <a href="js/binaryValues_testCases.js"> js/binaryValues_testCases.js</a>. </li>
+      <li> The test cases are also enumerated below.</li>
+      <li> If said cases are not below, server-side includes need to be enabled.</li>
+   </ol>
+
+   <pre id="block">
+      <!--#include file="js/binaryValues_testCases.js" -->
+   </pre>
+</body>
+</html>

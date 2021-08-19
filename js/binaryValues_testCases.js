@@ -1,5 +1,4 @@
-
-var TestCases = [
+var testCases = [
 	// Positive Testing:
 	
 	// Testing for various binaryValues
@@ -113,18 +112,3 @@ var TestCases = [
 
 
 ];
-
-function test ( testCase ) {
-	var outcome = eval ( testCase.func );
-	var stringify = JSON.stringify(outcome);
-	if (stringify == JSON.stringify (testCase.result)) {
-		console.log(   "Success!" + "\t\t" + testCase.func + "  ==  " + testCase.result );
-	} else {
-		console.error( "Failure!" + "\t\t" + testCase.func );
-		console.error( "\tExpected: " + testCase.result );
-		console.error( "\tOutCome:  " + outcome );
-		console.error();
-	}
-}
-
-
