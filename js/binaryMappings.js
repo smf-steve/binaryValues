@@ -183,3 +183,5 @@ function testSuite ( testCase ) {
         console.error( "\tOutCome:  " + outcome );
         console.error();
     }
+ }
+ 
