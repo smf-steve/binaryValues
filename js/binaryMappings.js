@@ -51,15 +51,16 @@ function numberJoin(arr, base = 2) {
 const numberPrefix = "# ";
 
 function numberSplit(str) {
-   return str.trim().split('# ');
+   return str.trim().split(numberPrefix);
 }
 
 /////
 function numberConvert(str, base) {
    var components = numberSplit(str);
-   var from_base = components[0];  
+   var from_base  = components[0];  
+   var digits     = components[1];
 
-   var digits = digitsSqueeze(str);
+   var digits = digitsSqueeze(digits);
 
    if (from_base != base) {
       digits = Number.parseInt(digits, from_base).toString(base);  
