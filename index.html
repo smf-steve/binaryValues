@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Comp122 Simple Binary Value Routines"</title>
+<link rel="icon" href="" type="image/x-icon" />
+</head>
+<script src="js/binaryMappings.js"></script>
+
+
+<html>
+<body>
+   <h1>COMP122: Binary Mapping and Values Library</h1>
+   <p>
+      This webpage has been designed to allow students to execute various methods to manipulate binary numbers. The intent is for students to open the console to execute this routines to help them in various assignments.
+   <p>
+      The Javascript program that is loaded via the web page is NOT intended to be included in larger programs.
+   </p>
+   <h2>Opening the Console</h2>
+      To open the console on various browsers, enter the following command sequence:
+      <ul>
+         <li>Brave: Option + &#8984; + J (macOS), or Shift + CTRL + J (Windows/Linux)</li>
+         <li>Chrome: Option + &#8984; + J (macOS), or Shift + CTRL + J (Windows/Linux)</li>
+         <li>FireFox: Option + &#x2325; + C (macOS), or Shift + CTRL + J (Windows/Linux)</li>
+         <li>Safari: Option + &#x2325; + C (macOS)</li>
+      </ul>
+      Note: You might have to enable the "developer" mode on your browser. <br>
+      Note: We recommend that you side by side viewing mode.
+   </p>
+   <h2>Number Representation:</h2>
+   All numbers are represented as a string.  This string begins with "<em>base</em> #".  As such, the decimal number 42, can be represented as: 
+   <ul><li>"2# 101010"</li><li>"8# 52"</li><li>"10# 42"</li><li>"16# 2A"</li>
+   </ul>
+
+   <p>
+   Also note that space and superfluous zeros may be placed with the string for visual clarity.  As such the decimal number 2,776 can be represented as: 
+   <ul><li>"2# 0000 1010 1100 1110"</li><li>"8# 5 316"</li><li>"10# 2 776"</li><li>"16# 0A CE"</li>
+   </ul>
+
+
+   <h2>Supported API:<h2>
+   <h3>Conversions:</h3>
+   <ul>
+      <li>Number.toBinary()</li>
+      <li>Number.toOctal()</li>
+      <li>Number.toHex()</li>
+      <li>Number.toDec()</li>
+   </ul>
+
+   <h3>Formating:</h3>
+   <ul>
+      <li>Number = Number.trim(): removes superfluous zeros</li>
+      <li>Number = Number.pad(N): adds superflous zeros to ensure the length is N</li>
+   </ul>
+   <ul>
+      <li>Number = Number.nibbles(): groups of 4-bit quanities</li>
+      <li>Number = Number.bytes():   groups of 8-bit quanities</li>
+      <li>Number = Number.halfs():   groups of 16-bit quanities</li>
+      <li>Number = Number.words():   groups of 32-bit quanities</li>
+      <li>Number = Number.doubles(): groups of 64-bit quanities</li>
+      <br>
+      <li>Number = Number.separate(N): each group is of size N</li>
+      <li>Number = Number.squeeze(): removes superflous spaces</li>
+
+   </ul>   
+
+   <h3>Mappings: Character <-> Binary</h3>
+   <ul>
+      <li>'char' = Number.encodeBase64()</li>
+      <li>Number = 'char'.decodeBase64()</li>
+
+      <li>Number = 'char'.encodeASCII()</li>
+      <li>'char' = "Number".decodeASCII()</li>
+
+      <li>Number = 'char'.encodeUTF8()</li>
+      <li>'char' = Number.dececodeUTF()</li>
+   </ul> 
+
+   <h3>Chopping and Join:</h3>
+   <ul>
+      <li> Number[] = numberChop(N)<br>
+           Creates an array of Numbers by chopping the orginal number into groups of N digits.<br>
+           If N is undefined, then number is chopped at each space.<br>
+           By default the number is chopped starting from the right.</li>
+      <li> Number =(Number[]).numberJoin()</li>
+      <li> Number =(Number[]).splice(Number, at)  # follows the pattter of Array.splice
+             -- Number[] = Number.numberChop()
+             -- Number[] = (Number[]).splice(start, delCount, item)  // in place
+             -- Number   = Array.numberJoin()
+    </ul>
+</body>
+</html>
