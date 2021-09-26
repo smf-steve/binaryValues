@@ -1,28 +1,27 @@
 // following will be string prototypes
 
-let toBin    = function (str) { return numberConvert(str, 2)  } ;
-let toOct    = function (str) { return numberConvert(str, 8)  } ;
-let toDec    = function (str) { return numberConvert(str, 10) } ;
-let toHex    = function (str) { return numberConvert(str, 16) } ;
-
-let nibbles  = function (str) { return numberSeparate(str, 4) };
-let halfs    = function (str) { return numberSeparate(str, 16) };
-let words    = function (str) { return numberSeparate(str, 32) };
-let doubles  = function (str) { return numberSeparate(str, 64) };
-let separate = function (str, N) { return numberSeparate(str, N) };
+String.prototype.toBin    = function ()  { return numberConvert(this, 2)  } ;
+String.prototype.toOct    = function ()  { return numberConvert(str, 8)  } ;
+String.prototype.toDec    = function ()  { return numberConvert(str, 10) } ;
+String.prototype.toHex    = function ()  { return numberConvert(str, 16) } ;
+ 
+String.prototype.nibbles  = function ()  { return numberSeparate(str, 4) };
+String.prototype.halfs    = function ()  { return numberSeparate(str, 16) };
+String.prototype.words    = function ()  { return numberSeparate(str, 32) };
+String.prototype.doubles  = function ()  { return numberSeparate(str, 64) };
+String.prototype.separate = function (N) { return numberSeparate(str, N) };
 
 // add string prototypes for the following:
 
-let encodeBase64 = function () {};
-let decodeBase64 = function () {};
-let encodeASCII = function () {};
-let decodeASCII = function () {};
-let encodeUTF8  = function () {};
-let decodeUTF8  = function () {};
+String.prototype.encodeBase64 = function () { return numberEncodeBase64(this) };
+String.prototype.decodeBase64 = function () { return numberDecodeBase64(this) };
+String.prototype.encodeASCII  = function () { return numberEncodeASCII(this) };
+String.prototype.decodeASCII  = function () { return numberDecodeASCII(this) };
+String.prototype.encodeUTF8   = function () { return numberEncodeUTF8(this) };
+String.prototype.decodeUTF8   = function () { return numberDecodeUTF8(this) };
 
-let chop = function (N) {};
-let join = function () {};
-let splice = function () {};
+String.prototype.chop         = function (N) { return numberChop(this, N) };
+Array.prototype.join          = function () { return numberJoin(this,N) };
 
 function numberChop(str, N) {
    // Works like numberSeparate puts pieces into array elements
@@ -60,7 +59,7 @@ function numberConvert(str, base) {
    var components = numberSlit(str);
    var from_base = components[0];  
 
-   var digits = str.digitsSqueeze();
+   var digits = digitsSqueeze(str);
 
    if (from_base != base) {
       digits = Number.parseInt(digits, from_base).toString(base);  
@@ -135,3 +134,42 @@ function digitsSeparate(str, N) {
 
    return str.split(group_re).join(' ');
 }
+
+
+var testCases = [
+   // Positive Testing:
+   
+   // Testing for various binaryValues
+      { func: '"2# 101010".toDec()',        result: "10# 42" },
+      { func: '"2# 101010".toOct()',        result: "10# 52" },
+      { func: '"2# 101010".toHex()',        result: "10# 2A" },
+      { func: '"10# 42".toBin()',           result: "2# 101010" },
+      { func: '"8# 52".toBin()',            result: "2# 101010" },
+      { func: '"16# 42".toBin()',           result: "2# 101010" },
+   
+
+      { func: '"2# 010010".pad(8)',                    result: "2# 00010010" },
+      { func: '"2# 01 0010".pad(8)',                   result: "2# 0001 0010" },
+
+      { func: '"2# 011110000111100001111".separate(6)', result: "#2 000011 110000 111100 001111" },
+      { func: '"2# 000011 110000 111100 001111".squeeze()',   result: true },
+
+      { func: '"2# 011110000111100001111".nibbles()',   result: "#2 0000 1111 0000 1111 0000 1111" },
+      { func: '"2# 011110000111100001111".bytes()',     result: "#2 00001111 00001111 00001111" },
+      { func: '"2# 011110000111100001111".halfs()',     result: "#2 0000000000001111 0000111100001111" },
+      { func: '"2# 011110000111100001111".words()',    
+                result: "#2 00000000000000000000000000000000 00000000000011110000111100001111" },
+      { func: '"2# 011110000111100001111".doubles()',    
+                result: "#2 0000000000000000000000000000000000000000000011110000111100001111" },
+
+
+
+
+      { func: '"10# 1111 2222 3333 4444 5555".chop(4)',  result: [ "10# 1111", "10# 2222", "10# 333", "10# 4444", "10# 5555"},
+      { func: '"10# 1111 2222 3333 4444 5555".chop(3)',  result: [ "10# 001", "10# 111", "10# 222", "10# 233", "10# 344", "10# 445", "10# 555" ] },
+
+      { func: '[ "16# 2A", "10# 42", "8# 42", "2# 101010" ].numberJoin(2)',
+                                                         result: "2# 101010101010101010101010"},
+
+
+]

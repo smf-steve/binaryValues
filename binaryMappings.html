@@ -4,7 +4,12 @@
 <link rel="icon" href="" type="image/x-icon" />
 </head>
 <script src="js/binaryMappings.js"></script>
-
+<<!-- script src="js/binaryMappings_testCases.js"></script> -->
+<script>
+window.onload = function () {
+   testCases.forEach( element => testSuite(element));
+};
+</script>
 
 <html>
 <body>
@@ -39,7 +44,7 @@
    <h2>Supported API:<h2>
    <h3>Conversions:</h3>
    <ul>
-      <li>Number.toBinary()</li>
+      <li>Number.toBin()</li>
       <li>Number.toOctal()</li>
       <li>Number.toHex()</li>
       <li>Number.toDec()</li>
@@ -80,8 +85,8 @@
            Creates an array of Numbers by chopping the orginal number into groups of N digits.<br>
            If N is undefined, then number is chopped at each space.<br>
            By default the number is chopped starting from the right.</li>
-      <li> Number =(Number[]).numberJoin()</li>
-      <li> Number =(Number[]).splice(Number, at)  # follows the pattter of Array.splice
+      <li> Number =(Number[]).numberJoin(base=2)</li>
+      <li> Number =(Number[]).splice(Number, ba)  # follows the pattter of Array.splice
              -- Number[] = Number.numberChop()
              -- Number[] = (Number[]).splice(start, delCount, item)  // in place
              -- Number   = Array.numberJoin()
