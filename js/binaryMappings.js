@@ -25,7 +25,7 @@ Array.prototype.join          = function () { return numberJoin(this, N) };
 
 function numberChop(str, N) {
    // Works like numberSeparate puts pieces into array elements
-   var components = numberSlit(str);
+   var components = numberSplit(str);
    var base = components[0]; 
    var digits = components[1];
    var arr ;  // an array of numbers
@@ -50,13 +50,13 @@ function numberJoin(arr, base = 2) {
 
 const numberPrefix = "# ";
 
-function numberSlit(str) {
-   return str.trim().split('#');
+function numberSplit(str) {
+   return str.trim().split('# ');
 }
 
 /////
 function numberConvert(str, base) {
-   var components = numberSlit(str);
+   var components = numberSplit(str);
    var from_base = components[0];  
 
    var digits = digitsSqueeze(str);
@@ -70,7 +70,7 @@ function numberConvert(str, base) {
 
 function numberOperation(operation, str, num) {
   // Remove formating spaces.
-   var components = numberSlit(str);
+   var components = numberSplit(str);
    var base = components[0];  
    var digits = components[1];
 
