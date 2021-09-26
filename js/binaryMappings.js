@@ -11,6 +11,12 @@ String.prototype.words    = function ()  { return numberSeparate(this, 32) };
 String.prototype.doubles  = function ()  { return numberSeparate(this, 64) };
 String.prototype.separate = function (N) { return numberSeparate(this, N) };
 
+
+String.prototype.trim  = function ()  { return numberTrim(this) };
+String.prototype.pad.  = function (N) { return numberPad(this, N) };
+
+
+
 // add string prototypes for the following:
 
 String.prototype.encodeBase64 = function () { return numberEncodeBase64(this) };
@@ -103,7 +109,8 @@ function digitsTrim(str) {
    // Remove superfluous leading zeros (0)
    var leadingZero_RE = /^[ 0]+/;
 
-   return str.trim().replace(/^[ 0]+/, '');
+   str = str.trim().replace(/^[ 0]+/, '');
+   return (digits == '') ? 0 : digits;
 }
 
 function digitsPad(str, N) {
@@ -142,11 +149,11 @@ var testCases = [
    
    // Testing for various binaryValues
       { func: '"2# 101010".toDec()',        result: "10# 42" },
-      { func: '"2# 101010".toOct()',        result: "10# 52" },
-      { func: '"2# 101010".toHex()',        result: "10# 2A" },
+      { func: '"2# 101010".toOct()',        result: "8# 52" },
+      { func: '"2# 101010".toHex()',        result: "16# 2A" },
       { func: '"10# 42".toBin()',           result: "2# 101010" },
       { func: '"8# 52".toBin()',            result: "2# 101010" },
-      { func: '"16# 42".toBin()',           result: "2# 101010" },
+      { func: '"16# 2A".toBin()',           result: "2# 101010" },
    
 
       { func: '"2# 010010".pad(8)',                    result: "2# 00010010" },
