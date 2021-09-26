@@ -13,7 +13,7 @@ String.prototype.separate = function (N) { return numberSeparate(this, N) };
 
 
 String.prototype.trim  = function ()  { return numberTrim(this) };
-String.prototype.pad.  = function (N) { return numberPad(this, N) };
+String.prototype.pad   = function (N) { return numberPad(this, N) };
 
 
 
