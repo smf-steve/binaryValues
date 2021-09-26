@@ -38,7 +38,7 @@ function numberChop(str, N) {
    return { base: base + numberPrefix, list: arr };
 }
 
-fuction numberJoin(arr, base = 2) {
+function numberJoin(arr, base = 2) {
    // Works like Array.join
    // Assumed base is 2;
 
