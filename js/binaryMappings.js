@@ -1,15 +1,15 @@
 // following will be string prototypes
 
 String.prototype.toBin    = function ()  { return numberConvert(this, 2)  } ;
-String.prototype.toOct    = function ()  { return numberConvert(str, 8)  } ;
-String.prototype.toDec    = function ()  { return numberConvert(str, 10) } ;
-String.prototype.toHex    = function ()  { return numberConvert(str, 16) } ;
+String.prototype.toOct    = function ()  { return numberConvert(this, 8)  } ;
+String.prototype.toDec    = function ()  { return numberConvert(this, 10) } ;
+String.prototype.toHex    = function ()  { return numberConvert(this, 16) } ;
  
-String.prototype.nibbles  = function ()  { return numberSeparate(str, 4) };
-String.prototype.halfs    = function ()  { return numberSeparate(str, 16) };
-String.prototype.words    = function ()  { return numberSeparate(str, 32) };
-String.prototype.doubles  = function ()  { return numberSeparate(str, 64) };
-String.prototype.separate = function (N) { return numberSeparate(str, N) };
+String.prototype.nibbles  = function ()  { return numberSeparate(this, 4) };
+String.prototype.halfs    = function ()  { return numberSeparate(this, 16) };
+String.prototype.words    = function ()  { return numberSeparate(this, 32) };
+String.prototype.doubles  = function ()  { return numberSeparate(this, 64) };
+String.prototype.separate = function (N) { return numberSeparate(this, N) };
 
 // add string prototypes for the following:
 
@@ -21,7 +21,7 @@ String.prototype.encodeUTF8   = function () { return numberEncodeUTF8(this) };
 String.prototype.decodeUTF8   = function () { return numberDecodeUTF8(this) };
 
 String.prototype.chop         = function (N) { return numberChop(this, N) };
-Array.prototype.join          = function () { return numberJoin(this,N) };
+Array.prototype.join          = function () { return numberJoin(this, N) };
 
 function numberChop(str, N) {
    // Works like numberSeparate puts pieces into array elements
@@ -184,4 +184,4 @@ function testSuite ( testCase ) {
         console.error();
     }
  }
- 
+
