@@ -11,7 +11,7 @@ String.prototype.words    = function ()  { return numberSeparate(this, 32) };
 String.prototype.doubles  = function ()  { return numberSeparate(this, 64) };
 String.prototype.separate = function (N) { return numberSeparate(this, N) };
 
-String.prototype.trim  = function ()  { return numberTrim(this) };
+//String.prototype.trim  = function ()  { return numberTrim(this) };
 String.prototype.pad   = function (N) { return numberPad(this, N) };
 
 String.prototype.encodeBase64 = function () { return numberEncodeBase64(this) };
@@ -21,8 +21,9 @@ String.prototype.decodeASCII  = function () { return numberDecodeASCII(this) };
 String.prototype.encodeUTF8   = function () { return numberEncodeUTF8(this) };
 String.prototype.decodeUTF8   = function () { return numberDecodeUTF8(this) };
 
-String.prototype.chop         = function (N) { return numberChop(this, N) };
-Array.prototype.join          = function () { return numberJoin(this) };
+//String.prototype.chop         = function (N) { return numberChop(this, N) };
+//Array.prototype.join          = function () { return numberJoin(this) };
+
 
 function numberChop(str, N) {
    // Works like numberSeparate puts pieces into array elements
@@ -132,7 +133,7 @@ function digitsSqueeze(str) {
 function digitsSeparate(str, N) {
    str = digitsSqueeze(str);
 
-   extra = (num.length % N);
+   var extra = (str.length % N);
    if (extra > 0) {
       str.padStart((N - extra), '0');
    }
