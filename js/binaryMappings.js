@@ -147,7 +147,7 @@ function digitsSeparate(str, N) {
 var testCases = [
    // Positive Testing:
 
-      { func: 'numberSplit("2# 01001100110")', result: [ "2", "01001100110" ] }
+      { func: 'numberSplit("2# 01001100110")', result: [ "2", "01001100110" ] },
    
    // Testing for various binaryValues
       { func: '"2# 101010".toDec()',        result: "10# 42" },
