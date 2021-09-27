@@ -11,13 +11,8 @@ String.prototype.words    = function ()  { return numberSeparate(this, 32) };
 String.prototype.doubles  = function ()  { return numberSeparate(this, 64) };
 String.prototype.separate = function (N) { return numberSeparate(this, N) };
 
-
 String.prototype.trim  = function ()  { return numberTrim(this) };
 String.prototype.pad   = function (N) { return numberPad(this, N) };
-
-
-
-// add string prototypes for the following:
 
 String.prototype.encodeBase64 = function () { return numberEncodeBase64(this) };
 String.prototype.decodeBase64 = function () { return numberDecodeBase64(this) };
@@ -57,7 +52,14 @@ function numberJoin(arr, base = 2) {
 const numberPrefix = "# ";
 
 function numberSplit(str) {
-   return str.trim().split(numberPrefix);
+   // In addition to split the number into its components
+   //   - removes superfluous white spaces at the ends
+   // Note the String.prototype.trim is overwritten, so don't use it
+   var components = str.split(numberPrefix);
+   var base   = components[0].replace(/^ */, '').replace(/ *$/, '');
+   var digits = components[1].replace(/^ */, '').replace(/ *$/, '');
+
+   return [ base, digits ];
 }
 
 /////
@@ -106,11 +108,9 @@ function numberSeparate(str, N) {
 
 ////////////////////////////
 function digitsTrim(str) {
-   // Remove superfluous leading zeros (0)
-   var leadingZero_RE = /^[ 0]+/;
-
-   str = str.trim().replace(/^[ 0]+/, '');
-   return (digits == '') ? 0 : digits;
+   // Removes superfluous leading zeros (0)
+   str = str.replace(/^[0]+/, '');
+   return (digits == '') ? 0 : str;
 }
 
 function digitsPad(str, N) {
