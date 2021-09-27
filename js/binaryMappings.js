@@ -116,10 +116,10 @@ function digitsTrim(str) {
 
 function digitsPad(str, N) {
    // Add superfluous leading zeros (0) to ensure a length >= N
-
+   var length = str.length
    var needed = N - str.match(/\d/g).length;
    var num = (needed > 0 )
-           ? str.padStart(needed, '0')
+           ? str.padStart(length + needed, '0')
            : str;
 
    return num;
@@ -153,7 +153,7 @@ var testCases = [
    // Testing for various binaryValues
       { func: '"2# 101010".toDec()',        result: "10# 42" },
       { func: '"2# 101010".toOct()',        result: "8# 52" },
-      { func: '"2# 101010".toHex()',        result: "16# 2A" },
+      { func: '"2# 101010".toHex()',        result: "16# 2a" },
       { func: '"10# 42".toBin()',           result: "2# 101010" },
       { func: '"8# 52".toBin()',            result: "2# 101010" },
       { func: '"16# 2A".toBin()',           result: "2# 101010" },
