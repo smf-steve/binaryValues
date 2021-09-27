@@ -135,13 +135,13 @@ function digitsSeparate(str, N) {
 
    var extra = (str.length % N);
    if (extra > 0) {
-      str.padStart((N - extra), '0');
+      str = str.padStart(str.length + (N - extra), '0');
    }
 
-   var group_str = '\d{'+N+'}';
+   var group_str = '\\d{'+N+'}';
    var group_re = new RegExp(group_str, 'g')
 
-   return str.split(group_re).join(' ');
+   return str.match(group_re).join(' ');
 }
 
 
