@@ -46,8 +46,8 @@ function numberFuse(arr, base = 2) {
    // Works like Array.join
    // Assumed base is 2;
 
-   arr = arr.map(element => numberConvert(base))
-   arr = arr.map(element => replace(base + numberPrefix, ''));
+   arr = arr.map(element => numberConvert(element, base));
+   arr = arr.map(element => element.replace(base + numberPrefix, ''));
 
    return base + numberPrefix + arr.join(' ');
 }
