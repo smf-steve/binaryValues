@@ -120,7 +120,7 @@ function numberEncodeASCII(str) {
 }
 
 function numberDecodeASCII(str) {
-    return numberOperation(digitsDeCodeASCII, str);
+    return numberOperation(digitsDecodeASCII, str);
 
 }
 
