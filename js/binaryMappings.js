@@ -117,7 +117,7 @@ function digitsShrink(str) {
    return (digits == '') ? 0 : str;
 }
 
-function digitsExtend(str, N) {
+function digitsExpand(str, N) {
    // Extend the length to >= N by adding superfluous leading zeros (0)
    var length = str.length
    var needed = N - str.match(/\d/g).length;
