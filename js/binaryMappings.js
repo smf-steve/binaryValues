@@ -25,6 +25,7 @@ String.prototype.encodeUTF8   = function () { return numberEncodeUTF8(this) };
 String.prototype.decodeUTF8   = function () { return numberDecodeUTF8(this) };
 
 String.prototype.chop         = function (N) { return numberChop(this, N) };
+
 //Array.prototype.join          = function () { return numberJoin(this) };
 
 
@@ -176,8 +177,8 @@ var testCases = [
       { func: '"2# 111 0000000000001111 0000111100001111".doubles()',    
                 result: "2# 0000000000000000000000000000011100000000000011110000111100001111" },
    
-      { func: '"10# 1111 2222 3333 4444 5555".chop(4)',  result: [ "10# 1111", "10# 2222", "10# 333", "10# 4444", "10# 5555"] },
-      { func: '"10# 1111 2222 3333 4444 5555".chop(3)',  result: [ "10# 001", "10# 111", "10# 222", "10# 233", "10# 344", "10# 445", "10# 555" ] },
+      { func: '"10# 1111 2222 3333 4444 5555".chop(4)',  result: [ "10# 1111", "10# 2222", "10# 3333", "10# 4444", "10# 5555"] },
+      { func: '"10# 1111 2222 3333 4444 5555".chop(3)',  result: [ "10# 011", "10# 112", "10# 222", "10# 333", "10# 344", "10# 445", "10# 555" ] },
 
       { func: '[ "16# 2A", "10# 42", "8# 52", "2# 101010" ].numberJoin(2)',
                                                          result: "2# 101010101010101010101010"},
