@@ -24,7 +24,7 @@ String.prototype.decodeASCII  = function () { return numberDecodeASCII(this) };
 String.prototype.encodeUTF8   = function () { return numberEncodeUTF8(this) };
 String.prototype.decodeUTF8   = function () { return numberDecodeUTF8(this) };
 
-//String.prototype.chop         = function (N) { return numberChop(this, N) };
+String.prototype.chop         = function (N) { return numberChop(this, N) };
 //Array.prototype.join          = function () { return numberJoin(this) };
 
 
