@@ -101,7 +101,7 @@ function digitsDecodeASCII(str) {
    var num = Number.parseInt(digits, base); 
 
    console.assert( (components != false), "Semantic error: Number is greater than 127");
-   return (num < 128 ) ? fromCharCode(num)  : NaN;
+   return (num < 128 ) ? String.fromCharCode(num)  : NaN;
 }
 
 function digitsEncodeASCII(str) {
