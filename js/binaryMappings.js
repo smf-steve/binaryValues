@@ -8,6 +8,7 @@ String.prototype.toHex    = function ()  { return numberConvert(this, 16) } ;
 String.prototype.squeeze  = function ()  { return numberSqueeze(this) };
 
 String.prototype.nibbles  = function ()  { return numberSeparate(this, 4) };
+String.prototype.bytes    = function ()  { return numberSeparate(this, 4) };
 String.prototype.halfs    = function ()  { return numberSeparate(this, 16) };
 String.prototype.words    = function ()  { return numberSeparate(this, 32) };
 String.prototype.doubles  = function ()  { return numberSeparate(this, 64) };
