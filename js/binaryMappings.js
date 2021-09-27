@@ -15,7 +15,7 @@ String.prototype.doubles  = function ()  { return numberSeparate(this, 64) };
 String.prototype.separate = function (N) { return numberSeparate(this, N) };
 
 //String.prototype.trim  = function ()  { return numberTrim(this) };
-String.prototype.pad   = function (N) { return numberPad(this, N) };
+String.prototype.extend   = function (N) { return numberExtend(this, N) };
 
 String.prototype.encodeBase64 = function () { return numberEncodeBase64(this) };
 String.prototype.decodeBase64 = function () { return numberDecodeBase64(this) };
@@ -25,8 +25,7 @@ String.prototype.encodeUTF8   = function () { return numberEncodeUTF8(this) };
 String.prototype.decodeUTF8   = function () { return numberDecodeUTF8(this) };
 
 String.prototype.chop         = function (N) { return numberChop(this, N) };
-
-//Array.prototype.join          = function () { return numberJoin(this) };
+Array.prototype.fuse          = function () { return numberFuse(this) };
 
 
 function numberChop(str, N) {
@@ -43,7 +42,7 @@ function numberChop(str, N) {
    return { base: base + numberPrefix, list: arr };
 }
 
-function numberJoin(arr, base = 2) {
+function numberFuse(arr, base = 2) {
    // Works like Array.join
    // Assumed base is 2;
 
@@ -99,8 +98,8 @@ function numberTrim(str) {
    return numberOperation(digitsTrim, str);
 }
 
-function numberPad(str, N) {
-   return numberOperation(digitsPad, str, N);
+function numberExtend(str, N) {
+   return numberOperation(digitsExtend, str, N);
 }
 
 function numberSqueeze(str) {
@@ -118,8 +117,8 @@ function digitsTrim(str) {
    return (digits == '') ? 0 : str;
 }
 
-function digitsPad(str, N) {
-   // Add superfluous leading zeros (0) to ensure a length >= N
+function digitsExtend(str, N) {
+   // Extend the length to >= N by adding superfluous leading zeros (0)
    var length = str.length
    var needed = N - str.match(/\d/g).length;
    var num = (needed > 0 )
@@ -180,7 +179,7 @@ var testCases = [
       { func: '"10# 1111 2222 3333 4444 5555".chop(4)',  result: [ "10# 1111", "10# 2222", "10# 3333", "10# 4444", "10# 5555"] },
       { func: '"10# 1111 2222 3333 4444 5555".chop(3)',  result: [ "10# 011", "10# 112", "10# 222", "10# 333", "10# 344", "10# 445", "10# 555" ] },
 
-      { func: '[ "16# 2A", "10# 42", "8# 52", "2# 101010" ].numberJoin(2)',
+      { func: '[ "16# 2A", "10# 42", "8# 52", "2# 101010" ].extend(2)',
                                                          result: "2# 101010101010101010101010"},
 
 
