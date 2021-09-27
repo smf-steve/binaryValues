@@ -14,8 +14,8 @@ String.prototype.words    = function ()  { return numberSeparate(this, 32) };
 String.prototype.doubles  = function ()  { return numberSeparate(this, 64) };
 String.prototype.separate = function (N) { return numberSeparate(this, N) };
 
-//String.prototype.trim  = function ()  { return numberTrim(this) };
-String.prototype.extend   = function (N) { return numberExtend(this, N) };
+String.prototype.shrink   = function ()  { return numberShrink(this) };
+String.prototype.expand   = function (N) { return numberExpand(this, N) };
 
 String.prototype.encodeBase64 = function () { return numberEncodeBase64(this) };
 String.prototype.decodeBase64 = function () { return numberDecodeBase64(this) };
@@ -93,13 +93,13 @@ function numberOperation(operation, str, num) {
 }
 
 
-function numberTrim(str) {
+function numberShrink(str) {
    // Remove superfluous leading zeros (0)
-   return numberOperation(digitsTrim, str);
+   return numberOperation(digitsShrink, str);
 }
 
-function numberExtend(str, N) {
-   return numberOperation(digitsExtend, str, N);
+function numberExpand(str, N) {
+   return numberOperation(digitsExpand, str, N);
 }
 
 function numberSqueeze(str) {
@@ -111,7 +111,7 @@ function numberSeparate(str, N) {
 }
 
 ////////////////////////////
-function digitsTrim(str) {
+function digitsShrink(str) {
    // Removes superfluous leading zeros (0)
    str = str.replace(/^[0]+/, '');
    return (digits == '') ? 0 : str;
@@ -162,8 +162,8 @@ var testCases = [
       { func: '"16# 2A".toBin()',           result: "2# 101010" },
    
 
-      { func: '"2# 010010".pad(8)',                    result: "2# 00010010" },
-      { func: '"2# 01 0010".pad(8)',                   result: "2# 0001 0010" },
+      { func: '"2# 010010".expand(8)',                    result: "2# 00010010" },
+      { func: '"2# 01 0010".expand(8)',                   result: "2# 0001 0010" },
 
       { func: '"2# 011110000111100001111".separate(6)', result: "2# 000011 110000 111100 001111" },
       { func: '"2# 000011 110000 111100 001111".squeeze()',   result: "2# 000011110000111100001111" },
@@ -179,7 +179,7 @@ var testCases = [
       { func: '"10# 1111 2222 3333 4444 5555".chop(4)',  result: [ "10# 1111", "10# 2222", "10# 3333", "10# 4444", "10# 5555"] },
       { func: '"10# 1111 2222 3333 4444 5555".chop(3)',  result: [ "10# 011", "10# 112", "10# 222", "10# 333", "10# 344", "10# 445", "10# 555" ] },
 
-      { func: '[ "16# 2A", "10# 42", "8# 52", "2# 101010" ].extend(2)',
+      { func: '[ "16# 2A", "10# 42", "8# 52", "2# 101010" ].fuse(2)',
                                                          result: "2# 101010101010101010101010"},
 
 
