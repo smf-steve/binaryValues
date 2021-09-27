@@ -4,7 +4,9 @@ String.prototype.toBin    = function ()  { return numberConvert(this, 2)  } ;
 String.prototype.toOct    = function ()  { return numberConvert(this, 8)  } ;
 String.prototype.toDec    = function ()  { return numberConvert(this, 10) } ;
 String.prototype.toHex    = function ()  { return numberConvert(this, 16) } ;
- 
+
+String.prototype.squeeze  = function ()  { return numberSqueeze(this) };
+
 String.prototype.nibbles  = function ()  { return numberSeparate(this, 4) };
 String.prototype.halfs    = function ()  { return numberSeparate(this, 16) };
 String.prototype.words    = function ()  { return numberSeparate(this, 32) };
@@ -163,7 +165,7 @@ var testCases = [
       { func: '"2# 01 0010".pad(8)',                   result: "2# 0001 0010" },
 
       { func: '"2# 011110000111100001111".separate(6)', result: "2# 000011 110000 111100 001111" },
-      { func: '"2# 000011 110000 111100 001111".squeeze()',   result: true },
+      { func: '"2# 000011 110000 111100 001111".squeeze()',   result: "2# 000011110000111100001111" },
 
       { func: '"2# 011110000111100001111".nibbles()',   result: "2# 0000 1111 0000 1111 0000 1111" },
       { func: '"2# 011110000111100001111".bytes()',     result: "2# 00001111 00001111 00001111" },
