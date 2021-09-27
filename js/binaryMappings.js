@@ -91,7 +91,7 @@ function numberOperation(operation, str, num) {
    return base + "# " + digits;
 }
 
-function digitsEncodeASCII(str) {
+function digitsDecodeASCII(str) {
    // str is a number that is to be converted into ASCII
    // Remove formating spaces.
    var components = numberSplit(str);
@@ -104,7 +104,7 @@ function digitsEncodeASCII(str) {
    return (num < 128 ) ? fromCharCode(num)  : NaN;
 }
 
-function digitsDecodeASCII(str) {
+function digitsEncodeASCII(str) {
   // str is a ASCII char, return a binary number
   var base = 2; 
   var num;
