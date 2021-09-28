@@ -91,12 +91,7 @@ function numberOperation(operation, str, num) {
    return base + "# " + digits;
 }
 
-function digitsDecodeASCII(str) {
-   // str is a number that is to be converted into ASCII
-   // Remove formating spaces.
-   var components = numberSplit(str);
-   var base = components[0];  
-   var digits = digitsSqueeze(components[1]);
+function numberDecodeASCII(num, base) {
 
    var num = Number.parseInt(digits, base); 
 
@@ -104,7 +99,7 @@ function digitsDecodeASCII(str) {
    return (num < 128 ) ? String.fromCharCode(num)  : NaN;
 }
 
-function digitsEncodeASCII(str) {
+function numberEncodeASCII(str) {
   // str is a ASCII char, return a binary number
   var base = 2; 
   var num;
@@ -114,15 +109,6 @@ function digitsEncodeASCII(str) {
   return base + numberPrefix + num.toString(base);
 }
 
-
-function numberEncodeASCII(str) {
-    return numberOperation(digitsEncodeASCII, str);
-}
-
-function numberDecodeASCII(str) {
-    return numberOperation(digitsDecodeASCII, str);
-
-}
 
 function numberShrink(str) {
    // Remove superfluous leading zeros (0)
