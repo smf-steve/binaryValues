@@ -91,7 +91,10 @@ function numberOperation(operation, str, num) {
    return base + "# " + digits;
 }
 
-function numberDecodeASCII(num, base) {
+function numberDecodeASCII(str, base) {
+  var components = numberSplit(str);
+   var base = components[0];  
+   var digits = components[1];
 
    var num = Number.parseInt(digits, base); 
 
