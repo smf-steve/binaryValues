@@ -220,7 +220,7 @@ var testCases = [
       { func:   '"10# 42".decodeASCII()', 
         result: "*"},
 
-      { func:   '"*".encodeASCII()', 
+      { func:   '"*".encodeASCII().toDec()', 
         result: "10# 42"}
 ]
 
