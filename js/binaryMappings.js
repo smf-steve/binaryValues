@@ -87,6 +87,7 @@ function numberOperation(operation, str, num) {
    var digits = components[1];
 
    digits = operation(digits, num);
+   //digits = operation(arguments;
 
    return base + "# " + digits;
 }

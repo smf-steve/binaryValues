@@ -25,7 +25,7 @@ window.onload = function () {
          <li>Brave: Option + &#8984; + J (macOS), or Shift + CTRL + J (Windows/Linux)</li>
          <li>Chrome: Option + &#8984; + J (macOS), or Shift + CTRL + J (Windows/Linux)</li>
          <li>FireFox: Option + &#x2325; + C (macOS), or Shift + CTRL + J (Windows/Linux)</li>
-         <li>Safari: Option + &#x2325; + C (macOS)</li>
+         <li>Safari: &#x2325; + &#8984; + C (macOS)</li>
       </ul>
       Note: You might have to enable the "developer" mode on your browser. <br>
       Note: We recommend that you side by side viewing mode.
@@ -79,17 +79,10 @@ window.onload = function () {
       <li>'char' = Number.decodeUTF()</li>
    </ul> 
 
-   <h3>Chopping and Join:</h3>
+   <h3>Chopping and Fusing:</h3>
    <ul>
-      <li> Number[] = numberChop(N)<br>
-           Creates an array of Numbers by chopping the orginal number into groups of N digits.<br>
-           If N is undefined, then number is chopped at each space.<br>
-           By default the number is chopped starting from the right.</li>
-      <li> Number =(Number[]).numberJoin(base=2)</li>
-      <li> Number =(Number[]).splice(Number, ba)  # follows the pattter of Array.splice
-             -- Number[] = Number.numberChop()
-             -- Number[] = (Number[]).splice(start, delCount, item)  // in place
-             -- Number   = Array.numberJoin()
+      <li> Number[] = Number.chop(N)<br>
+      <li> Number =(Number[]).fuse(base=2)</li>
     </ul>
 </body>
 </html>
