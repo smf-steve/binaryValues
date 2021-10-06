@@ -49,7 +49,7 @@ function mips_encodeShiftValue(num) {
   console.assert(num < Math.pos(2, 5), "Expected num: 0..2^5 -1");
   // Returns: a 5 digit binary number
 
-  return num.toString(2).padStart(5, '0').
+  return num.toString(2).padStart(5, '0');
 }
 
 function mips_decodeShiftValue(str) {
