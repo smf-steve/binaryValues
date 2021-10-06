@@ -64,21 +64,21 @@ function mips_encodeImmediate(imm) {
     console.warn("imm value may interpreted as a negative value");
   }
   if (imm < 0) {
-    console.assert(!(-Math.pow(2, 15) < imm), "Expected num: > - 2^15");
+    console.assert(-Math.pow(2, 15) < imm, "Expected num: > - 2^15");
   }
-  console.assert(!(num < Math.pow(2, 16)), "Expected num: 0..2^16 -1");
+  console.assert(imm < Math.pow(2, 16), "Expected num: 0..2^16 -1");
   // Returns: a 16 digit unsigned binary number
 
   var pattern;
 
   if (imm < 0 ) {
-    imm = abs(imm) + 1;
-    pattern = abs(imm).toString(2);
+    imm = Math.abs(imm) + 1;
+    pattern = Math.abs(imm).toString(2);
     pattern.toComplement(pattern);
   } else {
-    pattern = abs(imm).toString(2)
+    pattern = imm.toString(2);
   }
-  return pattern;
+  return pattern.padStart(16,'0');
 }  
 
 
@@ -102,7 +102,7 @@ function toComplement(pattern) {
 function mips_instruction(mnemonic) {
   var instr;  // one of the records associated with instruction_table
   
-  instr = register_table.find(rec => rec.mnemonic == mnemonic);
+  instr = instruction_table.find(rec => rec.mnemonic == mnemonic);
   return instr;
 }
 
@@ -184,38 +184,38 @@ function mips_decodeRegister(code) {
 }
 
 register_table = [
-  { mnemonic: "$zero", number:  "$0", code: 0x00 },
-  { mnemonic: "$at",   number:  "$1", code: 0x00 },
-  { mnemonic: "$v0",   number:  "$2", code: 0x00 },
-  { mnemonic: "$v1",   number:  "$3", code: 0x00 },
-  { mnemonic: "$a0",   number:  "$4", code: 0x00 },
-  { mnemonic: "$a1",   number:  "$5", code: 0x00 },
-  { mnemonic: "$a2",   number:  "$6", code: 0x00 },
-  { mnemonic: "$a3",   number:  "$7", code: 0x00 },
-  { mnemonic: "$t0",   number:  "$8", code: 0x00 },
-  { mnemonic: "$t1",   number:  "$9", code: 0x00 },
-  { mnemonic: "$t2",   number: "$10", code: 0x00 },
-  { mnemonic: "$t3",   number: "$11", code: 0x00 },
-  { mnemonic: "$t4",   number: "$12", code: 0x00 },
-  { mnemonic: "$t5",   number: "$13", code: 0x00 },
-  { mnemonic: "$t6",   number: "$14", code: 0x00 },
-  { mnemonic: "$t7",   number: "$15", code: 0x00 },
-  { mnemonic: "$s0",   number: "$16", code: 0x00 },
-  { mnemonic: "$s1",   number: "$17", code: 0x00 },
-  { mnemonic: "$s2",   number: "$18", code: 0x00 },
-  { mnemonic: "$s3",   number: "$19", code: 0x00 },
-  { mnemonic: "$s4",   number: "$20", code: 0x00 },
-  { mnemonic: "$s5",   number: "$21", code: 0x00 },
-  { mnemonic: "$s6",   number: "$22", code: 0x00 },
-  { mnemonic: "$s7",   number: "$23", code: 0x00 },
-  { mnemonic: "$t8",   number: "$24", code: 0x00 },
-  { mnemonic: "$t9",   number: "$25", code: 0x00 },
-  { mnemonic: "$k1",   number: "$26", code: 0x00 },
-  { mnemonic: "$k2",   number: "$27", code: 0x00 },
-  { mnemonic: "$gp",   number: "$28", code: 0x00 },
-  { mnemonic: "$sp",   number: "$29", code: 0x00 },
-  { mnemonic: "$fp",   number: "$30", code: 0x00 },
-  { mnemonic: "$ra",   number: "$31", code: 0x00 }
+  { mnemonic: "$zero", number:  "$0", code: '00000' },
+  { mnemonic: "$at",   number:  "$1", code: '00001' },
+  { mnemonic: "$v0",   number:  "$2", code: '00010' },
+  { mnemonic: "$v1",   number:  "$3", code: '00011' },
+  { mnemonic: "$a0",   number:  "$4", code: '00100' },
+  { mnemonic: "$a1",   number:  "$5", code: '00101' },
+  { mnemonic: "$a2",   number:  "$6", code: '00110' },
+  { mnemonic: "$a3",   number:  "$7", code: '00111' },
+  { mnemonic: "$t0",   number:  "$8", code: '01000' },
+  { mnemonic: "$t1",   number:  "$9", code: '01001' },
+  { mnemonic: "$t2",   number: "$10", code: '01010' },
+  { mnemonic: "$t3",   number: "$11", code: '01011' },
+  { mnemonic: "$t4",   number: "$12", code: '01100' },
+  { mnemonic: "$t5",   number: "$13", code: '01101' },
+  { mnemonic: "$t6",   number: "$14", code: '01110' },
+  { mnemonic: "$t7",   number: "$15", code: '01111' },
+  { mnemonic: "$s0",   number: "$16", code: '10000' },
+  { mnemonic: "$s1",   number: "$17", code: '10001' },
+  { mnemonic: "$s2",   number: "$18", code: '10010' },
+  { mnemonic: "$s3",   number: "$19", code: '10011' },
+  { mnemonic: "$s4",   number: "$20", code: '10100' },
+  { mnemonic: "$s5",   number: "$21", code: '10101' },
+  { mnemonic: "$s6",   number: "$22", code: '10110' },
+  { mnemonic: "$s7",   number: "$23", code: '10111' },
+  { mnemonic: "$t8",   number: "$24", code: '11000' },
+  { mnemonic: "$t9",   number: "$25", code: '11001' },
+  { mnemonic: "$k1",   number: "$26", code: '11010' },
+  { mnemonic: "$k2",   number: "$27", code: '11011' },
+  { mnemonic: "$gp",   number: "$28", code: '11100' },
+  { mnemonic: "$sp",   number: "$29", code: '11101' },
+  { mnemonic: "$fp",   number: "$30", code: '11110' },
+  { mnemonic: "$ra",   number: "$31", code: '11111' }
 ];
 
 
