@@ -73,7 +73,7 @@ B = (5).integerToBinarySequence() + '.' + (75).fractionalPartoToBinarySequence(4
 4. Represent the value of _B_ within normalized exponential form
 ```
 E = "101.1100".toNormalizeBinaryValue();
-  // C is defined to be: "1.011100 *^ 10"
+  // E is defined to be: "1.011100 *^ 10"
 ```
 5. Identify the individual components of the binaryValue:
 ```
@@ -81,11 +81,11 @@ BC = "1.011100 *^ 10".toBinaryComponents();
   // BC is defined to be: { sign: '', whole: "1", fractional: "011100", exponentSign: '', exponent: '10' }
 ```
 
-Now, we are in position to encode the decimal number, 5.75, into float32.  Recall the encoding of binary32 is as follows:
-  * A 32 bit quanity that is made up of three components
+Now, we are in position to encode the decimal number, 5.75, as binary32.  Recall the encoding of binary32 is as follows:
+  * A 32 bit quanity that is made up of three components:
     1.  s: Sign bit:  1 bit
     2.  e: Exponent width: 8 bits, stored with a bias of 127
-    3.  f: Significand precision: 24 bits (23 explictly stored)
+    3.  f: Significand precision: 24 bits (with 23 bits explictly stored)
 
 Using the computed value of the normalized binary value, as defined by BC, we can determine the equivalent binary32 value via:
 ```
